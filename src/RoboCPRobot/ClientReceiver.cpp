@@ -22,12 +22,12 @@ void ClientReceiver::Start ()
     tcp::iostream socketStream;
 
     cout << "ClientReceiver: Waiting for connection.." << endl; //TODO: write in log
-	RAW_LOG (INFO, "ClientReceiver: Waiting for connection..");
+	//RAW_LOG (INFO, "ClientReceiver: Waiting for connection..");
 	
     acceptor.accept (*socketStream.rdbuf ()); // waiting from connection from any IP
 
     cout << "ClientReceiver: Connected!" << endl; //TODO: write in log
-	RAW_LOG (INFO, "ClientReceiver: Connected!");
+	//RAW_LOG (INFO, "ClientReceiver: Connected!");
 	
 	boost::archive::xml_iarchive ia(socketStream); // We will receive objects in XML
 	Command com;
@@ -35,12 +35,12 @@ void ClientReceiver::Start ()
 	while (!socketStream.fail() ) {
 	  ia >> BOOST_SERIALIZATION_NVP(com);
       cout << "New command: " << com.ComType << " " << com.ComCondition << " " << com.Value << endl; // TODO: command buffer
-	  RAW_LOG (INFO, "New command: %d %d %f", com.ComType, com.ComCondition, com.Value);
+//	  RAW_LOG (INFO, "New command: %d %d %f", com.ComType, com.ComCondition, com.Value);
 	}
   
   }
   catch (exception& e) {
     cout << "ClientReceiver: Exception: " << e.what () << endl; //TODO: write in log
-	RAW_LOG (INFO, "ClientReceiver: Exception: %s", e.what());
+//	RAW_LOG (INFO, "ClientReceiver: Exception: %s", e.what());
   }
 }

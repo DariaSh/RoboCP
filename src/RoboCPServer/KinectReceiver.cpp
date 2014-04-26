@@ -26,7 +26,7 @@ void KinectReceiver::Start ()
 
     if (!socketStream.fail() ) {
       cout << "KinectReceiver: Connected!" << endl; // TODO: write in log
-	  RAW_LOG (INFO,  "KinectReceiver: Connected!");
+	//  RAW_LOG (INFO,  "KinectReceiver: Connected!");
 	  Sleep (5000);
 
 	  while (true ) {
@@ -40,6 +40,6 @@ void KinectReceiver::Start ()
   }
   catch (exception& e) {
     cout << "KinectReceiver: Exception: " << e.what () << endl; // TODO: write in log
-	RAW_LOG (INFO,  "KinectReceiver: Exception: %s", e.what());
+//	RAW_LOG (INFO,  "KinectReceiver: Exception: %s", e.what());
   }
 }

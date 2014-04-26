@@ -18,7 +18,7 @@ ArduCopterController::~ArduCopterController(void)
 
 void ArduCopterController::sendInitionalData(void)
 {
-  RAW_LOG(INFO, "ArduCopterController: sending initional data...");
+//  RAW_LOG(INFO, "ArduCopterController: sending initional data...");
   unsigned char DataToSend[32];
   DataToSend[0] = 0xFE;
   DataToSend[1] = 0x02;
@@ -291,12 +291,12 @@ void ArduCopterController::sendInitionalData(void)
   copterCom->Write((char *)&DataToSend[0],14);
   Sleep(50);
   stage = -6;
-  RAW_LOG(INFO, "ArduCopterController: Initional data sent!");
+//  RAW_LOG(INFO, "ArduCopterController: Initional data sent!");
 }
 
 void ArduCopterController::Start(void)
 {
-  RAW_LOG(INFO, "ArduCopterController: started");
+//  RAW_LOG(INFO, "ArduCopterController: started");
   #ifdef COPTER_MSG_TYPES_TEST
   bool used[256];
   for (int i = 0; i<256; i++) used[i] = true;
@@ -397,7 +397,7 @@ void ArduCopterController::Start(void)
     }else{
       if (difftime(time(NULL),lastReadTime)>COPTER_SECONDS_TO_RECONNECT){
         copterCom->~SerialCom();
-        RAW_LOG(INFO, "ArduCopterController: reconnecting...");
+//        RAW_LOG(INFO, "ArduCopterController: reconnecting...");
         char *cstr = new char[copterPort.length() + 1];
         strcpy(cstr, copterPort.c_str());
         copterCom = new SerialCom(cstr, COPTER_BAUD_RATE);

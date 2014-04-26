@@ -21,12 +21,12 @@ void SendSender::Start ()
     tcp::iostream socketStream;
 
     cout << "SendSender: Waiting for connection.." << endl; //TODO: write in log
-	RAW_LOG (INFO, "SendSender: Waiting for connection..");
+//	RAW_LOG (INFO, "SendSender: Waiting for connection..");
 
     acceptor.accept (*socketStream.rdbuf ()); // waiting from connection from any IP
 
     cout << "SendSender: Connected!" << endl; //TODO: write in log
-	RAW_LOG (INFO, "SendSender: Connected!");
+//	RAW_LOG (INFO, "SendSender: Connected!");
 
 	while (!socketStream.fail() ) {
 	  boost::archive::xml_oarchive oa (socketStream); // We want to send objects in XML
@@ -38,7 +38,7 @@ void SendSender::Start ()
   }
   catch (exception& e) {
     cout << "SendSender: Exception: " << e.what () << endl; //TODO: write in log
-	RAW_LOG (INFO, "SendSender: Exception: %s", e.what());
+//	RAW_LOG (INFO, "SendSender: Exception: %s", e.what());
   }
 
 }

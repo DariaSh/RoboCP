@@ -5,24 +5,24 @@ SerialCom::SerialCom(char *PortName, int BaudRate)
   TCHAR *pcCommPort = TEXT(PortName);
   out = new char[READ_BUFF_SIZE];
   outSize = 0;
-  RAW_LOG (INFO, "SerialCom(%s): connecting...",PortName);
+//  RAW_LOG (INFO, "SerialCom(%s): connecting...",PortName);
   hComm = CreateFile(pcCommPort, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, NULL);
   if (hComm == INVALID_HANDLE_VALUE){
     int err = GetLastError();
     if (err == ERROR_FILE_NOT_FOUND){
-      RAW_LOG (INFO, "SerialCom(%s): can't connect - this com port or device doesn't exist",PortName);
+//      RAW_LOG (INFO, "SerialCom(%s): can't connect - this com port or device doesn't exist",PortName);
     }else{
       if (err = ERROR_ACCESS_DENIED){
-        RAW_LOG (INFO, "SerialCom(%s): can't connect - this com port already in use",PortName);
+//        RAW_LOG (INFO, "SerialCom(%s): can't connect - this com port already in use",PortName);
       }else{
-        RAW_LOG (INFO, "SerialCom(%s): can't connect - unknown error",PortName);
+//        RAW_LOG (INFO, "SerialCom(%s): can't connect - unknown error",PortName);
       }
     }
   }else{
-    RAW_LOG (INFO, "SerialCom(%s): connected!",PortName);
+//    RAW_LOG (INFO, "SerialCom(%s): connected!",PortName);
   }
   if (!SetupComm(hComm,1024,1024)){
-    RAW_LOG (INFO, "SerialCom(%s): can't setup i/o buffers",PortName);
+ //   RAW_LOG (INFO, "SerialCom(%s): can't setup i/o buffers",PortName);
   }
   COMMCONFIG conf;
   conf.dcb.DCBlength = sizeof(DCB);
@@ -45,7 +45,7 @@ SerialCom::SerialCom(char *PortName, int BaudRate)
   conf.dcb.Parity = NOPARITY;            // 0-4=no,odd,even,mark,space
   conf.dcb.StopBits = ONESTOPBIT;
   if (!SetCommState(hComm, &conf.dcb)){
-    RAW_LOG (INFO, "SerialCom(%s): can't set comm state",PortName);
+//    RAW_LOG (INFO, "SerialCom(%s): can't set comm state",PortName);
   }
   COMMTIMEOUTS commTimeouts;
   GetCommTimeouts(hComm, &commTimeouts);
@@ -55,7 +55,7 @@ SerialCom::SerialCom(char *PortName, int BaudRate)
   commTimeouts.WriteTotalTimeoutMultiplier = 0;
   commTimeouts.WriteTotalTimeoutConstant = 0;
   if (!SetCommTimeouts(hComm,&commTimeouts)){
-    RAW_LOG (INFO, "SerialCom(%s): can't set timeouts",PortName);
+//    RAW_LOG (INFO, "SerialCom(%s): can't set timeouts",PortName);
   }
   delete [] PortName;
   Sleep(3000);

@@ -20,7 +20,7 @@ void SendReceiver::Start ()
 
     if (!socketStream.fail() ) {
       cout << "SendReceiver: Connected!" << endl; // TODO: write in log
-	  RAW_LOG (INFO, "SendReceiver: Connected!");
+	//  RAW_LOG (INFO, "SendReceiver: Connected!");
 
 	  Sleep(6000);
 
@@ -36,6 +36,6 @@ void SendReceiver::Start ()
   }
   catch (exception& e) {
     cout << "SendReceiver: Exception: " << e.what () << endl; // TODO: write in log
-	RAW_LOG (INFO, "SendReceiver: Exception: %s", e.what());
+	//RAW_LOG (INFO, "SendReceiver: Exception: %s", e.what());
   }
 }

@@ -19,9 +19,9 @@
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
 
-#define GLOG_NO_ABBREVIATED_SEVERITIES
-#include <glog/logging.h>
-#include <glog/raw_logging.h>
+//#define GLOG_NO_ABBREVIATED_SEVERITIES
+//#include <glog/logging.h>
+//#include <glog/raw_logging.h>
 
 #ifdef FLOW_TEST
 #include "ImageFlowProcessing.h"
@@ -33,7 +33,7 @@
 int main(char *args[], int count)
 {
 	freopen ("log.log", "a", stderr);
-	RAW_LOG (INFO, "MAIN ROBOT STARTED");
+//	RAW_LOG (INFO, "MAIN ROBOT STARTED");
 
   #ifdef MOTION_TEST
     CvCapture *capture = cvCreateCameraCapture(0);//0 - ñëó÷àéíàÿ êàìåðà, 1 - ps eye â ñëó÷àå íîóòáóêà ñ âåáêîé

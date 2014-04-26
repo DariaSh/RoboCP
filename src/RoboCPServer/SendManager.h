@@ -10,19 +10,19 @@
 #include "KinectViewer.h"
 
 #include <boost/asio.hpp>
-
-#define GLOG_NO_ABBREVIATED_SEVERITIES
-#include <glog/logging.h>
-#include <glog/raw_logging.h>
+//
+//#define GLOG_NO_ABBREVIATED_SEVERITIES
+//#include <glog/logging.h>
+//#include <glog/raw_logging.h>
 
 using boost::asio::ip::tcp;
 using namespace std;
-
-enum ArduCopterReceivedType{
-  AccelerationPacket,
-  AnglesPacket,
-  AltitudePacket
-};
+//
+//enum ArduCopterReceivedType{
+//  AccelerationPacket,
+//  AnglesPacket,
+//  AltitudePacket
+//};
 
 // Class purpose: taking Send objects from buffer and updating KinectViewer info
 class SendManager
