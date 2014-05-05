@@ -6,6 +6,7 @@
 #include "SendReceiver.h"
 #include "SendManager.h"
 #include "CommandMaker.h"
+#include "OffScreenRender.h"
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/visualization/pcl_visualizer.h>
@@ -43,7 +44,7 @@ int main(char *args[], int count)
   SendBuffer sendBuffer (50);
   SendReceiver sendReceiver (&config, &sendBuffer);
   SendManager sendManager (&sendBuffer, &kinectViewer);
-
+  OffScreenRender offScreenRender(&config);
 
 
   boost::thread_group tgroup;
@@ -59,6 +60,8 @@ int main(char *args[], int count)
   tgroup.create_thread ( boost::bind (&SendReceiver::Start, &sendReceiver) );
 
   tgroup.create_thread ( boost::bind (&SendManager::Start, &sendManager) );
+
+  tgroup.create_thread ( boost::bind (&OffScreenRender::Start, &offScreenRender) );
 
 
   tgroup.join_all ();
